@@ -1,7 +1,7 @@
-7c5b0f91faefc74b66e36c47752d1cd4 *DESCRIPTION
+401edc77399a254c8ca2eaa35244d9ad *DESCRIPTION
 29e975ee8a1954b3fc520a82fd0363a8 *LICENSE.note
 09d0ed9a03cb2a13f64a5001719c94ee *NAMESPACE
-396ffc5371426f5ecc55e826be2bfa41 *NEWS
+2b8ef23f804f4e71a0de55554069fffa *NEWS
 70a52935df607db6d35c6280c2f3a658 *R/GENDATA_dataGeneratorNewIO.R
 3d00ab538e75da2c3f20b6a73200f8ef *R/GENDATA_functionalGenerator.R
 6236e760bf891733397cdbd855231570 *R/GENDATA_functionalInterPolyGenerator.R
@@ -15,7 +15,7 @@ c02ef96750d7bf3aabb2a76ef94d5ca0 *R/TEST_functional.R
 871724daa4641cb0af99d2c4ef37f228 *R/TEST_functionalSharedAlpha.R
 f3edf4a980ebb8400e4182e99fdcfdb0 *R/TEST_paramModel.R
 a09b86279dd18d216b3aa6d12dfcc338 *R/TEST_zParam.R
-c27462e0919e4476eb87ec0a4f1f4b62 *R/rmcMultiRun.R
+366e024cb137a92056c8d845f418e7f0 *R/rmcMultiRun.R
 207bac1e37e32f284cb58da7dcb433dd *cleanup
 545a4f1e01bd40fe1fe72790be8be21f *inst/COPYRIGHTS
 ee2a59e33854bd1c98bd665a23014a99 *inst/doc/dataFormat.html
@@ -78,7 +78,7 @@ bc157b53844b39d6d7bc9faf88109756 *src/lib/Mixture/Rank/RankIndividual.cpp
 9447aef9e59daaac9377b052c542633c *src/lib/Mixture/Rank/RankIndividual.h
 d0df375846bdf7c69fbb4760024f0750 *src/lib/Mixture/Rank/RankLikelihood.cpp
 377dd7be8473dd31da7c3da48d55e13a *src/lib/Mixture/Rank/RankLikelihood.h
-3fc25a86aa800469f811811ab1144516 *src/lib/Mixture/Rank/RankMixture.h
+be3fa8ce597b7561e3b167d28325ff04 *src/lib/Mixture/Rank/RankMixture.h
 cdc7be71b7d80c9af995ea9b5bb81ae7 *src/lib/Mixture/Rank/RankParser.cpp
 015b328682f203ceb96e7ec66b1b20d0 *src/lib/Mixture/Rank/RankParser.h
 181edc473a3648a81796d5bd2201fda4 *src/lib/Mixture/Rank/RankStat.cpp
