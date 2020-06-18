@@ -114,7 +114,8 @@ globalVariables('i')
 #'   \item{nbFreeParameters: number of free parameters of the mixture}
 #'   \item{lnObservedLikelihood: observed loglikelihood}
 #'   \item{lnCompletedLikelihood: completed loglikelihood}
-#'   \item{IDClass: entropy used to compute the discriminative power}
+#'   \item{IDClass: entropy used to compute the discriminative power of variable: -\eqn{\sum_{i=1}^n t_{ikj} log(t_{ikj})/(n * log(K))}}
+#'   \item{IDClassBar: entropy used to compute the discriminative power of variable: -\eqn{\sum_{i=1}^n (1-t_{ikj}) log((1-t_{ikj}))/(n * log(K))}}
 #'   \item{delta: similarities between variables}
 #'   \item{completedProbabilityLogBurnIn: evolution of the completed log-probability during the burn-in period (can be used to check the convergence and determine the ideal number of iteration)}
 #'   \item{completedProbabilityLogRun: evolution of the completed log-probability  after the burn-in period (can be used to check the convergence and determine the ideal number of iteration)} 
@@ -162,6 +163,7 @@ globalVariables('i')
 #' |        \tab         \tab |_ lnCompletedLikelihood\cr
 #' |        \tab         \tab |_ lnObservedLikelihood \cr
 #' |        \tab         \tab |_ IDClass  \cr
+#' |        \tab         \tab |_ IDClassBar  \cr
 #' |        \tab         \tab |_ delta  \cr
 #' |        \tab         \tab |_ runTime \cr
 #' |        \tab         \tab |_ nbFreeParameters \cr
@@ -241,7 +243,7 @@ globalVariables('i')
 #' resLearn <- rmcMultiRun(algo, dataLearn, model, nRun = 3)
 #' 
 #' 
-#' # run RMixtCompt in predict mode + data as list
+#' # run RMixtComp in predict mode + data as list
 #' algo$nInd = 20
 #' algo$mode = "predict"
 #' resPredict <- rmcMultiRun(algo, dataPredict, model, resLearn)
@@ -274,6 +276,14 @@ rmcMultiRun <- function(algo, data, model, resLearn = list(), nRun = 1, nCore = 
     resTemp <- rmc(algo, data, model, resLearn)
     class(resTemp) = "MixtComp"
     
+    # c++ index starts at 0, we add 1
+    varNames <- names(resTemp$variable$data)
+    for(name in varNames)
+    {
+      if(!is.null(resTemp$variable$data[[name]]$stat))
+        resTemp$variable$data[[name]]$stat = correctIndexCompletedStat(resTemp$variable$data[[name]]$stat, resTemp$variable$type[[name]])
+    }
+
     if(verbose)
       cat(paste0("Run ", i, " DONE on thread number ", Sys.getpid(), "\n"))
     
@@ -290,6 +300,34 @@ rmcMultiRun <- function(algo, data, model, resLearn = list(), nRun = 1, nCore = 
   
   return(res[[indMax]])
 }
+
+# c++ index starts at 0, we add 1
+correctIndexCompletedStat <- function(stat, model)
+{
+  if(model %in% c("Gaussian", "Poisson", "NegativeBinomial", "Weibull"))
+    return(correctIndexCompletedStatNumerical(stat))
+  
+  if(model %in% c("Multinomial", "Rank_ISR"))
+    return(correctIndexCompletedStatMultinomRank(stat))
+  
+  return(stat)
+}
+
+correctIndexCompletedStatNumerical <- function(stat)
+{
+  stat[, 1] = stat[, 1] + 1
+  
+  return(stat)
+}
+
+correctIndexCompletedStatMultinomRank <- function(stat)
+{
+  names(stat) = as.numeric(names(stat)) + 1
+  
+  return(stat)
+}
+
+
 
 # rand index 
 rand.index <- function (partition1, partition2) 

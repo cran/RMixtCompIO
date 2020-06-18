@@ -182,7 +182,7 @@ public:
 	 * @param checkInd should be set to 1 if a minimum number of individual per class should be
 	 * enforced at sampling (true in learning, false in prediction) */
 	template<typename Graph>
-	std::string setDataParam(RunMode mode, const Graph& data, const Graph& param) {
+	std::string setDataParam(RunMode mode, const Graph& data, const Graph& param, const Graph& desc) {
 		std::string warnLog;
 
 		for (ConstMixtIterator it = v_mixtures_.begin(); it != v_mixtures_.end(); ++it) {
@@ -195,7 +195,7 @@ public:
 #endif
 		}
 
-		warnLog += setZi(data); // dataHandler getData is called to fill zi_
+		warnLog += setZi(data, desc); // dataHandler getData is called to fill zi_
 
 		if (mode == prediction_) { // in prediction, paramStatStorage_ will not be modified later during the run
 			warnLog += setProportion(param); // note: paramStr_ is manually set at the end of setDataParam, it is never parsed at the moment
@@ -237,27 +237,21 @@ public:
 		return warnLog;
 	}
 
-	/**
-	 * DataHandler is injected to take care of setting the values of the latent classes.
-	 * This avoids templating the whole composer with DataHandler type, as is currently done
-	 * with the IMixture subtypes.
-	 * @param checkInd should be set to 1 if a minimum number of individual per class should be
-	 * enforced at sampling (true in learning, false in prediction)
-	 */
+
 	template<typename Graph>
-	std::string setZi(Graph& data) {
+	std::string setZi(Graph& data, Graph& desc) {
 		std::string warnLog;
 
-		if (!data.exist_payload( { }, "z_class")) { // z_class was not provided
-#ifdef MC_VERBOSE
-				std::cout << "MixtureComposer::setZi, no class label provided." << std::endl;
-#endif
-			zClassInd_.setAllMissing(); // set every value state to missing_
-		} else {
+		if (data.exist_payload( { }, "z_class") & desc.exist_payload( { }, "z_class")) { // z_class was not provided
 #ifdef MC_VERBOSE
 			std::cout << "MixtureComposer::setZi, class label provided." << std::endl;
 #endif
 			warnLog += zClassInd_.setZi(data);
+		} else {
+#ifdef MC_VERBOSE
+				std::cout << "MixtureComposer::setZi, no class label provided." << std::endl;
+#endif
+			zClassInd_.setAllMissing(); // set every value state to missing_
 		}
 
 		std::string tempLog = zClassInd_.checkMissingType(); // check if the missing data provided are compatible with the model
@@ -266,20 +260,7 @@ public:
 			sstm << "Variable z_class contains latent classes and has unsupported missing value types.\n" << tempLog;
 			warnLog += sstm.str();
 		}
-		zClassInd_.computeRange(); // compute effective range of the data for checking, min and max will be set to 0 if data is completely missing
-		if (zClassInd_.zi().dataRange_.min_ < 0) { // Since z is currently described using unsigned integer, there is no need for this check HOWEVER it might come in handy shall this condition changes
-			std::stringstream sstm;
-			sstm << "The z_class latent class variable has a lowest provided value of: " << minModality + zClassInd_.zi().dataRange_.min_ << " while the minimal value has to be: " << minModality
-					<< ". Please check the encoding of this variable to ensure proper bounds." << std::endl;
-			warnLog += sstm.str();
-		}
-		if (zClassInd_.zi().dataRange_.hasRange_ == true || zClassInd_.zi().dataRange_.max_ > nClass_ - 1) {
-			std::stringstream sstm;
-			sstm << "The z_class latent class variable has a highest provided value of: " << minModality + zClassInd_.zi().dataRange_.max_
-					<< " while the maximal value can not exceed the number of class: " << minModality + nClass_ - 1 << ". Please check the encoding of this variable to ensure proper bounds."
-					<< std::endl;
-			warnLog += sstm.str();
-		}
+
 		zClassInd_.setRange(0, nClass_ - 1, nClass_);
 
 		return warnLog;
@@ -345,8 +326,11 @@ public:
 #endif
 
 		NamedMatrix<Real> idclass = { paramName(), mixtureName(), Matrix<Real>() };
-		IDClass(idclass.mat_);
+		NamedMatrix<Real> idclassbar = { paramName(), mixtureName(), Matrix<Real>() };
+		IDClass(idclass.mat_, idclassbar.mat_);
 		g.add_payload( { "mixture" }, "IDClass", idclass);
+		g.add_payload( { "mixture" }, "IDClassBar", idclassbar);
+
 
 		NamedMatrix<Real> pGCCPP = { dummyNames, dummyNames, Matrix<Real>() };
 		lnProbaGivenClass(pGCCPP.mat_);
@@ -395,11 +379,14 @@ public:
 	std::string initParamSubPartition(Index nInitPerClass);
 
 	/**
-	 * Compute the "raw" class ID matrix E_kj
+	 * Compute the "raw" class ID matrix containing entropy E_kj= -\sum_{i=1}^n t_{ikj} log(t_{ikj})
 	 *
 	 *@param[out] ekj matrix containing E_kj
+	 *@param[out] ebarkj matrix containing Ebar_kj= -\sum_{i=1}^n (1-t_{ikj}) log((1-t_{ikj}))
 	 * */
-	void E_kj(Matrix<Real>& ekj) const;
+	void E_kj(Matrix<Real>& ekj, Matrix<Real>& ebarkj) const;
+
+
 	/**
 	 * Added by Matt (Compute the matrix delta measuring the similarities between variables)
 	 *
@@ -412,7 +399,7 @@ public:
 	 *
 	 *@param[out] idc matrix containing the class id description
 	 * */
-	void IDClass(Matrix<Real>& idc) const;
+	void IDClass(Matrix<Real>& idc, Matrix<Real>& idcbar) const;
 
 	void lnProbaGivenClass(Matrix<Real>& idc) const;
 
