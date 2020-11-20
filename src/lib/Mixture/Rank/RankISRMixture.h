@@ -20,8 +20,8 @@
  *  Authors:    Vincent KUBICKI <vincent.kubicki@inria.fr>
  **/
 
-#ifndef LIB_MIXTURE_RANK_RANKMIXTURE_H
-#define LIB_MIXTURE_RANK_RANKMIXTURE_H
+#ifndef LIB_MIXTURE_RANK_RANKISRMIXTURE_H
+#define LIB_MIXTURE_RANK_RANKISRMIXTURE_H
 
 #include <set>
 #include <vector>
@@ -30,23 +30,22 @@
 #include <IO/IOFunctions.h>
 #include <IO/NamedAlgebra.h>
 #include <IO/SpecialStr.h>
-#include "RankClass.h"
-#include "RankLikelihood.h"
-#include "RankParser.h"
-#include "RankStat.h"
+#include "RankISRClass.h"
+#include "RankISRParser.h"
+#include "RankISRStat.h"
 
 
 namespace mixt {
 /**
- * RankMixture contains an array of RankClass. Each RankClass will have the responsibility to perform
+ * RankISRMixture contains an array of RankISRClass. Each RankISRClass will have the responsibility to perform
  * estimation of parameters and computation of the probability of individuals that belong to it.
  * */
 template<typename Graph>
-class RankMixture: public IMixture {
+class RankISRMixture: public IMixture {
 public:
 	typedef std::pair<MisType, std::vector<int> > MisVal;
 
-	RankMixture(const Graph& data, const Graph& param, Graph& out, std::string const& idName, Index nClass, Index nObs, Real confidenceLevel, const std::string& paramStr) :
+	RankISRMixture(const Graph& data, const Graph& param, Graph& out, std::string const& idName, Index nClass, Index nObs, Real confidenceLevel, const std::string& paramStr) :
 			IMixture(idName, "Rank_ISR", nClass, nObs), nbPos_(0), facNbMod_(0.), confidenceLevel_(confidenceLevel), dataG_(data), paramG_(param), outG_(out), mu_(nClass), pi_(nClass), piParamStat_(
 					pi_, confidenceLevel) {
 		class_.reserve(nClass);
@@ -97,7 +96,7 @@ public:
 			}
 
 			return "Error in variable: " + idName_
-					+ " with Rank_ISR model. The comparisons are uniformly correct or invalid in at least one class. If the number of different observed values is quite low, try using a categorical model instead."
+					+ " with Rank_ISR model. The comparisons are uniformly correct or invalid in at least one class. If the number of different observed values is quite low, try using a multinomial model instead."
 					+ eol;
 
 			itKEnd: ; // jumping here means that the return above is skipped, for the current class
@@ -408,24 +407,15 @@ private:
 
 	Vector<RankVal> mu_;
 	Vector<Real> pi_;
-	Vector<RankIndividual> data_;
+	Vector<RankISRIndividual> data_;
 
-	/** RankLikelihood object, used to for the harmonic mean estimation of the observed likelihood. */
-	RankLikelihood rankLikelihood_;
-
-	/** Matrix containing observed log probability distribution, used in harmonic mean estimation
-	 * of the observed probability
-	 * Individual in rows
-	 * Classes in columns */
-	Matrix<Real> observedProbaHMean_;
-
-	std::vector<RankClass> class_;
+	std::vector<RankISRClass> class_;
 
 	/** Each element of the vector keeps track of statistics for one particular mu */
-	std::vector<RankStat> muParamStat_;
+	std::vector<RankISRStat> muParamStat_;
 
 	/** Each element of the vector keeps track of statistics for one particular individual */
-	std::vector<RankStat> dataStat_;
+	std::vector<RankISRStat> dataStat_;
 
 	/** Compute the statistics on pi parameter */
 	ConfIntParamStat<Vector<Real> > piParamStat_;
@@ -437,4 +427,4 @@ private:
 
 } // namespace mixt
 
-#endif // RANKMIXTURE_H
+#endif // RANKISRMIXTURE_H

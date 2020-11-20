@@ -60,13 +60,13 @@ add_library(MixtComp
     Mixture/Simple/NegativeBinomial/NegativeBinomial.cpp
     Mixture/Simple/NegativeBinomial/NegativeBinomialSampler.cpp
     Mixture/Simple/NegativeBinomial/NegativeBinomial.h
-    Mixture/Simple/Categorical/Categorical.h
-    Mixture/Simple/Categorical/CategoricalSampler.h
-    Mixture/Simple/Categorical/Categorical.cpp
-    Mixture/Simple/Categorical/CategoricalLikelihood.h
-    Mixture/Simple/Categorical/CategoricalSampler.cpp
-    Mixture/Simple/Categorical/CategoricalDataStat.h
-    Mixture/Simple/Categorical/CategoricalDataStat.cpp
+    Mixture/Simple/Multinomial/Multinomial.h
+    Mixture/Simple/Multinomial/MultinomialSampler.h
+    Mixture/Simple/Multinomial/Multinomial.cpp
+    Mixture/Simple/Multinomial/MultinomialLikelihood.h
+    Mixture/Simple/Multinomial/MultinomialSampler.cpp
+    Mixture/Simple/Multinomial/MultinomialDataStat.h
+    Mixture/Simple/Multinomial/MultinomialDataStat.cpp
     Mixture/Simple/Poisson/Poisson.h
     Mixture/Simple/Poisson/PoissonStatistic.h
     Mixture/Simple/Poisson/PoissonLikelihood.h
@@ -76,37 +76,35 @@ add_library(MixtComp
     Mixture/Simple/Poisson/PoissonSampler.h
     Mixture/Simple/Poisson/PoissonSampler.cpp
     Mixture/Simple/SimpleMixture.h
-    Mixture/Rank/RankClass.h
-    Mixture/Rank/RankLikelihood.cpp
-    Mixture/Rank/RankMixture.h
-    Mixture/Rank/RankStat.h
-    Mixture/Rank/RankStat.cpp
-    Mixture/Rank/RankIndividual.h
+    Mixture/Rank/RankISRClass.h
+    Mixture/Rank/RankISRMixture.h
+    Mixture/Rank/RankISRStat.h
+    Mixture/Rank/RankISRStat.cpp
+    Mixture/Rank/RankISRIndividual.h
     Mixture/Rank/RankVal.h
-    Mixture/Rank/RankClass.cpp
-    Mixture/Rank/RankParser.cpp
-    Mixture/Rank/RankParser.h
-    Mixture/Rank/RankIndividual.cpp
-    Mixture/Rank/RankLikelihood.h
+    Mixture/Rank/RankISRClass.cpp
+    Mixture/Rank/RankISRParser.cpp
+    Mixture/Rank/RankISRParser.h
+    Mixture/Rank/RankISRIndividual.cpp
     Mixture/Rank/RankVal.cpp
-    Mixture/Functional/FunctionalClass.h
-    Mixture/Functional/FunctionalSharedAlphaMixture.h
-    Mixture/Functional/FunctionalClass.cpp
-    Mixture/Functional/Function.cpp
-    Mixture/Functional/FunctionalComputation.cpp
-    Mixture/Functional/FunctionalComputation.h
-    Mixture/Functional/FunctionalParser.h
-    Mixture/Functional/FunctionalParser.cpp
-    Mixture/Functional/FunctionalMixture.h
-    Mixture/Functional/Function.h
+    Mixture/Functional/FuncCSClass.h
+    Mixture/Functional/FuncSharedAlphaCSMixture.h
+    Mixture/Functional/FuncCSClass.cpp
+    Mixture/Functional/FunctionCS.cpp
+    Mixture/Functional/FuncCSComputation.cpp
+    Mixture/Functional/FuncCSComputation.h
+    Mixture/Functional/FunctionCSParser.h
+    Mixture/Functional/FunctionCSParser.cpp
+    Mixture/Functional/FuncCSMixture.h
+    Mixture/Functional/FunctionCS.h
     Statistic/ExponentialStatistic.h
     Statistic/MultinomialStatistic.cpp
     Statistic/RNG.h
     Statistic/RNG.cpp
     Statistic/MultinomialStatistic.h
-    Statistic/NormalStatistic.cpp
+    Statistic/GaussianStatistic.cpp
     Statistic/UniformStatistic.cpp
-    Statistic/NormalStatistic.h
+    Statistic/GaussianStatistic.h
     Statistic/ExponentialStatistic.cpp
     Statistic/UniformStatistic.h
     Statistic/Functions.h

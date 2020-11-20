@@ -16,20 +16,40 @@
 
 /*
  *  Project:    MixtComp
- *  Created on: September 28, 2015
+ *  Created on: Mar 27, 2014
  *  Authors:    Vincent KUBICKI <vincent.kubicki@inria.fr>
+ *              Serge IOVLEFF <serge.iovleff@inria.fr>
  **/
 
-#ifndef LIB_MIXTURE_RANK_RANKPARSER_H
-#define LIB_MIXTURE_RANK_RANKPARSER_H
+#ifndef MULTINOMIALSAMPLER_H
+#define MULTINOMIALSAMPLER_H
 
-#include <LinAlg/LinAlg.h>
-#include <Mixture/Rank/RankIndividual.h>
+#include "../../../LinAlg/LinAlg.h"
+#include "../../../Data/AugmentedData.h"
+#include "../../../Statistic/MultinomialStatistic.h"
 
-namespace mixt {
+namespace mixt
+{
 
-std::string parseRankStr(const std::vector<std::string>& vecStr, int minMod, int& nbMod, Vector<RankIndividual>& vecInd);
+class MultinomialSampler
+{
+  public:
+	MultinomialSampler(AugmentedData<Vector<int> >& augData,
+                       const Vector<Real>& param,
+                       int nbClass);
+
+    void samplingStepNoCheck(int i,
+                             int z_i);
+  private:
+    int nbClass_;
+
+    AugmentedData<Vector<int> >& augData_;
+
+    const Vector<Real>& param_;
+
+    MultinomialStatistic multi_;
+};
 
 } // namespace mixt
 
-#endif // RANKPARSER_H
+#endif /* MULTINOMIALSAMPLER_H */

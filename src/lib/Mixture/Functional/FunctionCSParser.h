@@ -20,16 +20,16 @@
  *  Authors:    Vincent KUBICKI <vincent.kubicki@inria.fr>
  **/
 
-#ifndef FUNCTIONALPARSER
-#define FUNCTIONALPARSER
+#ifndef FUNCTIONCSPARSER
+#define FUNCTIONCSPARSER
 
 #include <LinAlg/LinAlg.h>
-#include <Mixture/Functional/Function.h>
+#include <Mixture/Functional/FunctionCS.h>
 
 namespace mixt {
 
-std::string parseFunctionalStr(Index nSub, Index nCoeff, const std::vector<std::string>& dataStr, Vector<Function>& vecInd);
+std::string parseFunctionalStr(Index nSub, Index nCoeff, const std::vector<std::string>& dataStr, Vector<FunctionCS>& vecInd);
 
 } // namespace mixt
 
-#endif // FUNCTIONALPARSER
+#endif // FUNCTIONCSPARSER

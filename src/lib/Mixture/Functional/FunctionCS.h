@@ -25,11 +25,11 @@
 
 #include <LinAlg/LinAlg.h>
 #include "Statistic/Statistic.h"
-#include "FunctionalComputation.h"
+#include "FuncCSComputation.h"
 
 namespace mixt {
 
-class Function {
+class FunctionCS {
 public:
 	void setSize(Index nT, Index nSub);
 
@@ -128,7 +128,7 @@ private:
 	 * and columns are coefficients in the regression. */
 	Matrix<Real> vandermonde_;
 
-	NormalStatistic normal_;
+	GaussianStatistic normal_;
 	MultinomialStatistic multi_;
 };
 

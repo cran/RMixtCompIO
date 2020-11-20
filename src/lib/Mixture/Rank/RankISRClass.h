@@ -20,11 +20,11 @@
  *  Authors:    Vincent KUBICKI <vincent.kubicki@inria.fr>
  **/
 
-#ifndef RANKCLASS_H
-#define RANKCLASS_H
+#ifndef RANKISRCLASS_H
+#define RANKISRCLASS_H
 
 #include <Mixture/IMixture.h>
-#include <Mixture/Rank/RankIndividual.h>
+#include <Mixture/Rank/RankISRIndividual.h>
 #include <Mixture/Rank/RankVal.h>
 #include <set>
 
@@ -32,14 +32,14 @@
 namespace mixt {
 
 /** Class used to perform EM on a single variable with a single class. RankMixture contain an array of RankClass */
-class RankClass {
+class RankISRClass {
 public:
 	typedef std::pair<MisType, std::vector<int> > MisVal;
 //    /** Default constructor */
 //    RankClass(int nbClass);
 
 	/** Constructor with data and parameters provided. useful for unit-testing. */
-	RankClass(const Vector<RankIndividual>& data, RankVal& mu, Real& pi);
+	RankISRClass(const Vector<RankISRIndividual>& data, RankVal& mu, Real& pi);
 
 	Real lnCompletedProbability(const std::set<Index>& setInd) const;
 
@@ -60,7 +60,7 @@ private:
 	int nbInd_;
 
 	/** Data */
-	const Vector<RankIndividual>& data_;
+	const Vector<RankISRIndividual>& data_;
 
 	/** Parameter mu */
 	RankVal& mu_;
@@ -77,4 +77,4 @@ private:
 
 } // namespace mixt
 
-#endif // RANKCLASS_H
+#endif // RANKISRCLASS_H
