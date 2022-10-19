@@ -172,8 +172,8 @@ class MoreThuente {
     bool bound = false;
 
     // Check the input parameters for errors.
-    if ((brackt & ((stp <= std::min<Scalar>(stx, sty) ) | (stp >= std::max<Scalar>(stx, sty)))) | (dx * (stp - stx) >= 0.0)
-    | (stpmax < stpmin)) {
+    if ((brackt && ((stp <= std::min<Scalar>(stx, sty) ) || (stp >= std::max<Scalar>(stx, sty)))) || (dx * (stp - stx) >= 0.0)
+    || (stpmax < stpmin)) {
       return -1;
     }
 

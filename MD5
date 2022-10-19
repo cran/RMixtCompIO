@@ -1,7 +1,7 @@
-ebe65ffa5aa6df486237228f6d2f323f *DESCRIPTION
+246612e95d3577317aff82bcbb258421 *DESCRIPTION
 29e975ee8a1954b3fc520a82fd0363a8 *LICENSE.note
 edb9c43d97267d055ddaccef6766b997 *NAMESPACE
-d41de6901d027778f68a2310a36e0c32 *NEWS
+69defe8644896a400a07a379aa13aa60 *NEWS
 0a3a3139117067a87a8d1edfc626245a *R/GENDATA_dataGeneratorNewIO.R
 2668c3dd42f5ade2ab07094dea6ecc70 *R/GENDATA_functionalGenerator.R
 d2e9550a2eb5eefc970147caa0095022 *R/GENDATA_functionalInterPolyGenerator.R
@@ -33,7 +33,7 @@ b2841909cf9a8c4596935eb5ead241d8 *src/lib/Composer/ClassDataStat.h
 b1781005ed75191e74c568131ea9db51 *src/lib/Composer/ClassSampler.cpp
 c5f547e888d525c3d564bbb975f03bee *src/lib/Composer/ClassSampler.h
 9e3a597cc6f02b53a9cc7cd9e37bfbcf *src/lib/Composer/MixtureComposer.cpp
-166e135adc3ec0b5f40f09ad17751340 *src/lib/Composer/MixtureComposer.h
+cd32dd72eb413390b18e77fe065ed874 *src/lib/Composer/MixtureComposer.h
 99b260270e0cb0621051f7b691835f1f *src/lib/Composer/ZClassInd.cpp
 8af97b8dffdd4a71a3e04a96454e3e49 *src/lib/Composer/ZClassInd.h
 c2d40a140dac8985c19f904565198a05 *src/lib/Data/AugmentedData.cpp
@@ -155,7 +155,7 @@ a233da3c336d1bdd3029bf9ad1152f0c *src/optim/generator.bzl
 04ea9bbd36d2eb1b09c806c5fbd4ac26 *src/optim/include/cppoptlib/BUILD
 cfe26ce3dc5f1fe11e175108006fef9f *src/optim/include/cppoptlib/boundedproblem.h
 93a72dac1cdea99e8233a90ed02e1481 *src/optim/include/cppoptlib/linesearch/armijo.h
-a64f5d2f18254c490312b0c9f524d471 *src/optim/include/cppoptlib/linesearch/morethuente.h
+8614f5a2004f17a14d00711c92335fc6 *src/optim/include/cppoptlib/linesearch/morethuente.h
 d1a7a9cae25a02e71dc81f1d66c304fe *src/optim/include/cppoptlib/linesearch/wolfeheuristic.h
 956bc2cbf50ab8ad43c663dd0c7240de *src/optim/include/cppoptlib/meta.h
 ea3bf794ea503147280921f99b8fc6a1 *src/optim/include/cppoptlib/problem.h
