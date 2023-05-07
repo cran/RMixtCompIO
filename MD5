@@ -1,7 +1,7 @@
-b1e7c242eb77893b8f7a49abe6f46ea5 *DESCRIPTION
+ac2133b95de0fca8ff8bebb105c9e753 *DESCRIPTION
 29e975ee8a1954b3fc520a82fd0363a8 *LICENSE.note
 edb9c43d97267d055ddaccef6766b997 *NAMESPACE
-193fbc178cfacbe1fd7e1822c14aa5cb *NEWS
+8d28965662ce9deee2faf89be2e3216a *NEWS
 8207c7940813af9c1f72a007fa00dd2b *R/GENDATA_dataGeneratorNewIO.R
 2668c3dd42f5ade2ab07094dea6ecc70 *R/GENDATA_functionalGenerator.R
 d2e9550a2eb5eefc970147caa0095022 *R/GENDATA_functionalInterPolyGenerator.R
@@ -23,8 +23,8 @@ b9d4fa86ecba7c4bf5df3e89fe653891 *R/TEST_zParam.R
 3ecdfb9ee3eedf73f4f44e93f506bb2b *src/CPPToRMatrixType.h
 9de80c716ba55620413ffb7925f59bd4 *src/CPPToRVectorType.h
 25479f3adb64525618546b0035f63e71 *src/Makevars
-71883edb45b7a61968975752fd2ffd39 *src/RGraph.cpp
-ceb67b2e3bf4228707dafab0bda96f94 *src/RGraph.h
+0b77318277283b5aba7aa39f7b81ad8a *src/RGraph.cpp
+11fbe09d3b7b831bf1262a994bcce27c *src/RGraph.h
 c89cba24e34d46e7ccebfc418f56e028 *src/RcppExports.cpp
 a4760e492e139942ec22f989db800537 *src/UTest.cpp
 ebb1a470db748c68b6187c79d3a87351 *src/lib/CMakeLists.txt
@@ -205,5 +205,5 @@ a766d75a85fc7cf60c4b005fded23e50 *tests/testthat.R
 85273653e6630173f1407bc042e7d859 *tests/testthat/test.index.R
 57102fb6a3c77b6cf672820265e0779e *tests/testthat/test.io.R
 70efa55af194853c16cf42e8f157b829 *tests/testthat/test.multirun.R
-b44d0e9e79841db6a859e6f94c7ccc08 *tests/testthat/test.run.R
+2513fa02b712fac6e344a4bca6bc19e5 *tests/testthat/test.run.R
 cc3b792834b20af4e51e2282250dbdac *tests/testthat/test.simpleRun.R
