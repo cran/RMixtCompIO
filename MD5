@@ -1,7 +1,7 @@
-ac2133b95de0fca8ff8bebb105c9e753 *DESCRIPTION
+b4f88cf1f588ef594b9766ad4dfc8742 *DESCRIPTION
 29e975ee8a1954b3fc520a82fd0363a8 *LICENSE.note
 edb9c43d97267d055ddaccef6766b997 *NAMESPACE
-8d28965662ce9deee2faf89be2e3216a *NEWS
+aebbbfe9f0892e407edc93aefcdbc55b *NEWS
 8207c7940813af9c1f72a007fa00dd2b *R/GENDATA_dataGeneratorNewIO.R
 2668c3dd42f5ade2ab07094dea6ecc70 *R/GENDATA_functionalGenerator.R
 d2e9550a2eb5eefc970147caa0095022 *R/GENDATA_functionalInterPolyGenerator.R
@@ -46,9 +46,9 @@ d2e45510a684265f07e6bf0a24076e73 *src/lib/IO/IOFunctions.h
 b79814265b81a50b2bf2a41f1398f0ab *src/lib/IO/NamedAlgebra.h
 8ccc7747f8382f6af8ad550794aea108 *src/lib/IO/SpecialStr.cpp
 8b4a1edb875c25e53828b1dc7ad85371 *src/lib/IO/SpecialStr.h
-2e6336a41dd5c4b88521f3bcb71ef645 *src/lib/LinAlg/ConstIterator.h
+9f7709649f96973ced0030df4c8dbde8 *src/lib/LinAlg/ConstIterator.h
 d96a3c99ab68a3fd6b3ce6d8997e51b1 *src/lib/LinAlg/EigenMatrixBaseAddons.h
-5d7c57fa93182bece08ef67e87175cfd *src/lib/LinAlg/Iterator.h
+49dade24106910b5ec0b86168652341e *src/lib/LinAlg/Iterator.h
 eb8e9900c245c8496396f2918f590cf0 *src/lib/LinAlg/LinAlg.h
 b00b35353505e8e7dc164ad1e7abed57 *src/lib/LinAlg/Maths.cpp
 c98d42557ee483da4cbb05b051830f36 *src/lib/LinAlg/Maths.h
